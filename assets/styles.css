@@ -1,0 +1,118 @@
+:root {
+    --background: rgb(61, 61, 61);
+    --text-color: rgb(255, 255, 255);
+    --card-width: 33.3333%
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text-color);
+}
+
+header {
+    text-align: center;  
+}
+
+/* Create the flex box area. Each cardbox operates as one item in this flexbox */
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1rem;
+}
+
+/* Create a box to contain each card */
+.cardbox {
+    flex: 1 var(--card-width);
+    padding: 1rem;
+    max-width: var(--card-width);
+}
+
+/* 
+Create a card that operates as it's own flexbox.
+Set's min height of card to 100% so that all the heights of the cards are
+the same height in any given line within the wrapper
+*/
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: .1rem dashed;
+    border-radius: .5rem;
+    min-height: 100%;
+    padding: 1rem;
+}
+
+/* Move the header above so it is inline with the border of the card */
+.card-header {
+    position: relative;
+    margin-top: -2rem;
+    border: .2rem solid;
+    border-radius: .5rem;
+    background-color: var(--background);
+    padding: 0.2rem;
+} 
+
+.card-text {
+    padding: 0.25rem;
+}
+
+/* set flex grow to 1 so that the block height fills the height of the card.
+Add pre-wrap and break word to allow for code to be responsive
+*/
+.card-code {
+    flex-grow: 1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-image: linear-gradient(
+         rgba(232, 102, 236, 0.3) 0%,
+         rgba(232, 102, 236, 0.6) 100%
+         );
+    border-radius: .5rem;
+}
+
+/* Align content in pre tag to the center of the .card-code box */
+.card pre {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    font-family: monospace;
+    font-size: 1.15rem;
+    user-select: all;
+}
+
+/* add box shaddow */
+.card:hover,
+.card:hover .card-header {
+    box-shadow: inset 
+        0px 0px 8px rgba(232, 102, 236, 1), 
+        0 0 15px rgba(232, 102, 236, 1);
+}
+
+/* transitions the box shadow in and out */
+.card, .card-header {
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+footer {
+    text-align: center;  
+}
+
+/* adjust column number from 3 to 2 to 1 with media queries */
+@media screen and (max-width: 992px) {
+    :root {
+        --card-width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --card-width: 100%;
+}
